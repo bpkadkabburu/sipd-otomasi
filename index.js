@@ -64,7 +64,7 @@ async function goHome(page){
 }
 
 (async () => {
-    const browser = await puppeteer.launch({headless:true, devtools: true, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
+    const browser = await puppeteer.launch({headless:false, devtools: true, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
     const page = await browser.newPage();
     const previousSession = fs.existsSync(cookiesFilePath);
     if (previousSession) {
@@ -208,6 +208,7 @@ async function goHome(page){
                     await dpaBelanja.getLink(page, listSKPDRakBelanja);
                 } else {
                     banyakFile = fs.readdirSync(`${PATH.DPA.BELANJA}`)
+                    console.log(`${banyakFile.length} | ${listSKPDRakBelanja.length}`)
                     if(banyakFile.length === listSKPDRakBelanja.length){
                         console.log('DPA Belanja sudah lengkap, melanjutkan ....')
                     } else {
