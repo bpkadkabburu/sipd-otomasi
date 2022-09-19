@@ -9,6 +9,8 @@
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^16.0.0",
     "download": "^8.0.0",
-    "puppeteer": "^15.3.2"
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^15.3.2",
+    "underscore": "^1.13.4"
   }
 }

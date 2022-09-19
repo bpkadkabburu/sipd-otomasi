@@ -301,7 +301,7 @@ async function goHome(page){
         }
     }
 
-    // jika dirasa lengkap, baru dilakukan merge file
+    // jika dirasa lengkap, baru dilakukan merge file, pake command diluar
     
-    // await browser.close();
+    await browser.close();
 })();
