@@ -66,8 +66,10 @@ async function goHome(page){
 (async () => {
     const browser = await puppeteer.launch({headless:true, devtools: true, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
     const page = await browser.newPage();
-    const previousSession = fs.existsSync(cookiesFilePath);
-    if (previousSession) {
+    
+    if (!fs.existsSync(cookiesFilePath)) {
+        await login(page)
+    } else {
         // If file exist load the cookies
         const cookiesString = fs.readFileSync(cookiesFilePath);
         const parsedCookies = JSON.parse(cookiesString);
@@ -102,18 +104,19 @@ async function goHome(page){
         } else {
             await login(page);
         }
-    } else {
-        await login(page);
     }
 
-    if(!fs.existsSync(PATH.DPA.UTAMA)){
-        console.log(`Membuat Folder ${PATH.DPA.UTAMA}`)
-        fs.mkdirSync(PATH.DPA.UTAMA)
-        console.log(`Membuat Folder ${PATH.DPA.JSON}`)
-        fs.mkdirSync(PATH.DPA.JSON)
-    } else {
-        console.log(`Folder ${PATH.DPA.UTAMA} Sudah Ada`)
-        console.log(`Folder ${PATH.DPA.JSON} Sudah Ada`)
+    let pathDpa = PATH.DPA
+    for (const key in pathDpa) {
+        if (Object.hasOwnProperty.call(pathDpa, key)) {
+            const element = pathDpa[key];
+            if(!fs.existsSync(element)){
+                fs.mkdirSync(element)
+                console.log(`Membuat Folder ${element}`)
+            } else {
+                console.log(`Folder ${element} Sudah Ada`)
+            }
+        }
     }
     
     let dpa = await page.$("aside > div > div > nav > ul > li:nth-child(3) > ul > li:nth-child(2) > ul")
