@@ -8,13 +8,22 @@ async function login(page){
         await page.goto('https://burukab.sipd.kemendagri.go.id/daerah', {waitUntil: ['networkidle0', 'domcontentloaded']});   
     }
 
-    let m = await page.$('#wrapper > #page-wrapper-portal > .container-fluid > .row > .col-lg-12 > .wrapper-tengah > div:last-child')
-    console.log(m)
+    let pageEvaluate = await page.evaluate(async () => {
+        let m = document.querySelector("#wrapper > #page-wrapper-portal > .container-fluid > .row > .col-lg-12 > .wrapper-tengah > div:last-child > div:nth-child(2) > .bulet")
+        m.onclick()
+    })
+
+    await page.waitForNetworkIdle()
+    await page.type("[name='user_name']", 'erick')
+    await page.type("[name='user_password']", 'erick')
+    await page.click("button[type='submit']")
+
+    await page.waitForNavigation();
 
 }
 
 (async () => {
-    const browser = await puppeteer.launch({headless:false, devtools: true, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
+    const browser = await puppeteer.launch({headless:false, devtools: false, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
     const page = await browser.newPage();
     await login(page)
 
