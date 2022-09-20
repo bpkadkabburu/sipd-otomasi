@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { PDFDocument } = require('pdf-lib')
+const _ = require('underscore')
 const{
     PATH
 } = require('./lib/api')
@@ -59,8 +60,16 @@ async function mergeFile(listSKPD, directoryAttachment){
     }
 }
 
-const directoryAttachment = fs.readdirSync(PATH.DPA.UTAMA)
-directoryAttachment.shift(1)
+const directoryAttachment = [
+    '1. Halaman Persetujuan',
+    '2. Halaman Depan',
+    '3. DPA SKPD',
+    '4. DPA Pendapatan',
+    '5. DPA Belanja',
+    '6. DPA Rincian Belanja',
+    '7. Pembiayaan',
+]
+
 const listSKPD = fs.readdirSync(PATH.DPA.RINCIANBELANJA)
 
 mergeFile(listSKPD, directoryAttachment)
