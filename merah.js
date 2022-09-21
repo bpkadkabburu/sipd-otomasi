@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const cookiesFilePath = 'merah.json';
 
 async function login(page){
     console.log("Mengunjungi halaman login")
@@ -18,15 +19,23 @@ async function login(page){
     await page.type("[name='user_password']", 'erick')
     await page.click("button[type='submit']")
 
-    await page.waitForNavigation();
+    await page.waitForNavigation()
 
 }
 
 (async () => {
     const browser = await puppeteer.launch({headless:false, devtools: false, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
-    const page = await browser.newPage();
+    const page = await browser.newPage()
     await login(page)
+    
+    await page.waitForNetworkIdle()
+    await page.waitForSelector('.bulet')
+    let pageEvaluate = await page.evaluate(async () => {
+        let m = document.querySelector("#wrapper > #page-wrapper-portal > .container-fluid > .row > .col-lg-12 > .wrapper-tengah > #set_portal > div:last-child > .bulet")
+        m.onclick()
+    })
 
+    
     // jika dirasa lengkap, baru dilakukan merge file
     
     // await browser.close();
