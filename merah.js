@@ -35,6 +35,11 @@ async function login(page){
         m.onclick()
     })
 
+    await page.waitForSelector('canvas')
+    await page.waitForNetworkIdle()
+
+    
+
     
     // jika dirasa lengkap, baru dilakukan merge file
     
