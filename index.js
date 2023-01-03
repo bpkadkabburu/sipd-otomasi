@@ -36,9 +36,11 @@ async function login(page){
     await page.type("#email", USER_TAPD);
     await page.type("#password", PASSWORD_TAPD);
     await page.select("select#tahunanggaran", TAHUN_ANGGARAN);
-    await page.evaluate( ({ID_DAERAH, KODE_DAERAH, NAMA_DAERAH}) => {
-        onDaerahListItemClick({ "idDaerah": ID_DAERAH, "kodeDaerah": KODE_DAERAH, "namaDaerah": NAMA_DAERAH })
-    }, {ID_DAERAH, KODE_DAERAH, NAMA_DAERAH})
+    await page.waitForFunction(() => document.querySelector('select[name=idDaerah]').length >= 571);
+    await page.select("select[name=idDaerah]", ID_DAERAH)
+    // await page.evaluate( ({ID_DAERAH, KODE_DAERAH, NAMA_DAERAH}) => {
+    //     onDaerahListItemClick({ "idDaerah": ID_DAERAH, "kodeDaerah": KODE_DAERAH, "namaDaerah": NAMA_DAERAH })
+    // }, {ID_DAERAH, KODE_DAERAH, NAMA_DAERAH})
     await page.click("button[type='submit']")
 
     await page.waitForNavigation();
@@ -64,7 +66,7 @@ async function goHome(page){
 }
 
 (async () => {
-    const browser = await puppeteer.launch({headless:true, devtools: true, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
+    const browser = await puppeteer.launch({headless:true, devtools: false, defaultViewport:null, args:['--start-maximized']}); //, devtools: true, defaultViewport:null, args:['--start-maximized'] 
     const page = await browser.newPage();
     
     if (!fs.existsSync(cookiesFilePath)) {
