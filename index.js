@@ -32,11 +32,10 @@ async function login(page){
     } catch (error) {
         await page.goto(LINKS.DEPAN.LOGIN, {waitUntil: ['networkidle0', 'domcontentloaded']});   
     }
-
+    await page.select("select#tahunanggaran", TAHUN_ANGGARAN);
+    await page.waitForFunction(() => document.querySelector('select[name=idDaerah]').length >= 490);
     await page.type("#email", USER_TAPD);
     await page.type("#password", PASSWORD_TAPD);
-    await page.select("select#tahunanggaran", TAHUN_ANGGARAN);
-    await page.waitForFunction(() => document.querySelector('select[name=idDaerah]').length >= 571);
     await page.select("select[name=idDaerah]", ID_DAERAH)
     // await page.evaluate( ({ID_DAERAH, KODE_DAERAH, NAMA_DAERAH}) => {
     //     onDaerahListItemClick({ "idDaerah": ID_DAERAH, "kodeDaerah": KODE_DAERAH, "namaDaerah": NAMA_DAERAH })
