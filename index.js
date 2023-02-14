@@ -224,7 +224,13 @@ async function goHome(page){
                 }
                 break;
             case 'DPA Rincian Belanja':
-                let rbFolder = `${PATH.DPA.JSON}\\rb`;
+                let rbFolder = `${PATH.DPA.JSON}\\rb`
+                if(!fs.existsSync(rbFolder)){
+                    fs.mkdirSync(rbFolder)
+                    console.log(`Membuat Folder ${rbFolder}`)
+                } else {
+                    console.log(`Folder ${rbFolder} Sudah Ada`)
+                }
                 let banyakSKPD = fs.readdirSync(rbFolder);
                 if(banyakSKPD.length < 43){
                     console.log(`mengunjungi ${p.halaman}`);
