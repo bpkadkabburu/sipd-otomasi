@@ -232,6 +232,12 @@ async function goHome(page){
                     console.log(`Folder ${rbFolder} Sudah Ada`)
                 }
                 let banyakSKPD = fs.readdirSync(rbFolder);
+                banyakSKPD.sort((x, y) => {
+                    const xNum = parseInt(x.split('.')[0]);
+                    const yNum = parseInt(y.split('.')[0]);
+                    return xNum - yNum;
+                });
+                // console.log(banyakSKPD)
                 if(banyakSKPD.length < 43){
                     console.log(`mengunjungi ${p.halaman}`);
                     await page.goto(p.link, {waitUntil: 'networkidle0'});
@@ -242,7 +248,7 @@ async function goHome(page){
                     for (const jsonSKPD of banyakSKPD) {
                         jsonContent = fs.readFileSync(`${rbFolder}\\${jsonSKPD}`);
                         listSKPD = JSON.parse(jsonContent);
-                        console.log(`download rincian belanja ${jsonSKPD}`)
+                        // console.log(`download rincian belanja ${jsonSKPD}`)
                         await dpaRincianBelanja.download(listSKPD)
                     }
                 }
