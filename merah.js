@@ -45,3 +45,11 @@ async function login(page){
     
     // await browser.close();
 })();
+
+function gantiTanggal(){
+    let nomor = document.getElementsByTagName('table')[2].querySelector('tr:nth-child(2)').querySelector('td:nth-child(5)')
+    nomor.textContent = '43 Tahun 2022'
+    let tanggal = document.getElementsByTagName('table')[2].querySelector('tr:nth-child(3)').querySelector('td:nth-child(5)')
+    tanggal.textContent = '30 Desember 2022'
+}
+gantiTanggal()

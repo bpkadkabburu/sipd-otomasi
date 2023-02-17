@@ -177,7 +177,7 @@ async function goHome(page){
                     } else {
                         jsonContent = fs.readFileSync(file);
                         listSKPD = JSON.parse(jsonContent);
-                        console.log("File JSON sudah ada, melakukan download")
+                        console.log("File JSON DPA SKPD sudah ada, melakukan download")
                         await dpaSKPD.download(listSKPD, listSKPDRakBelanja)   
                     }
                 }
@@ -197,7 +197,7 @@ async function goHome(page){
                     if(banyakFile.length === listSKPD.length){
                         console.log('DPA Pendapatan sudah lengkap, melanjutkan ....')
                     } else {    
-                        console.log("File JSON sudah ada, melakukan download")
+                        console.log("File JSON DPA Pendapatan sudah ada, melakukan download")
                         await dpaBelanja.download(listSKPD, listSKPDRakBelanja)
                     }
                 }
@@ -218,7 +218,7 @@ async function goHome(page){
                     } else {
                         jsonContent = fs.readFileSync(file);
                         listSKPD = JSON.parse(jsonContent);
-                        console.log("File JSON sudah ada, melakukan download")
+                        console.log("File JSON DPA Belanja sudah ada, melakukan download")
                         await dpaBelanja.download(listSKPD, listSKPDRakBelanja)
                     }
                 }
@@ -268,7 +268,7 @@ async function goHome(page){
                     if(banyakFile.length === listSKPD.length){
                         console.log('DPA Pembiayaan sudah lengkap, melanjutkan ....')
                     } else {    
-                        console.log("File JSON sudah ada, melakukan download")
+                        console.log("File JSON DPA Pembiayaan sudah ada, melakukan download")
                         await dpaPembiayaan.download(listSKPD, listSKPDRakBelanja)
                     }
                 }
@@ -288,7 +288,7 @@ async function goHome(page){
                     } else {
                         jsonContent = fs.readFileSync(file);
                         listSKPD = JSON.parse(jsonContent);
-                        console.log("File JSON sudah ada, melakukan download")
+                        console.log("File JSON Halaman Persetujuan DPA sudah ada, melakukan download")
                         await dpaPersetujuanDepan.download(listSKPD, listSKPDRakBelanja)
                     }
                 }
@@ -309,7 +309,7 @@ async function goHome(page){
                     } else {
                         jsonContent = fs.readFileSync(file);
                         listSKPD = JSON.parse(jsonContent);
-                        console.log("File JSON sudah ada, melakukan download")
+                        console.log("File JSON Halaman Depan DPA sudah ada, melakukan download")
                         await dpaDepan.download(listSKPD, listSKPDRakBelanja)   
                     }
                 }
