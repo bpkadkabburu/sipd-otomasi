@@ -61,8 +61,8 @@ async function mergeFile(listSKPD, directoryAttachment){
 }
 
 const directoryAttachment = [
-    '1. Halaman Persetujuan',
     '2. Halaman Depan',
+    '1. Halaman Persetujuan',
     '3. DPA SKPD',
     '4. DPA Pendapatan',
     '5. DPA Belanja',

@@ -51,5 +51,7 @@ function gantiTanggal(){
     nomor.textContent = '43 Tahun 2022'
     let tanggal = document.getElementsByTagName('table')[2].querySelector('tr:nth-child(3)').querySelector('td:nth-child(5)')
     tanggal.textContent = '30 Desember 2022'
+    let ttd = document.getElementsByTagName('table')[4]
+    ttd.innerHTML = ''
 }
 gantiTanggal()
