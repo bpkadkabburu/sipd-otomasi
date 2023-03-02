@@ -198,7 +198,7 @@ async function goHome(page){
                         console.log('DPA Pendapatan sudah lengkap, melanjutkan ....')
                     } else {    
                         console.log("File JSON DPA Pendapatan sudah ada, melakukan download")
-                        await dpaBelanja.download(listSKPD, listSKPDRakBelanja)
+                        await dpaPendapatan.download(listSKPD, listSKPDRakBelanja)
                     }
                 }
                 break;
