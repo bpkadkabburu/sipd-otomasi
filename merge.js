@@ -4,6 +4,9 @@ const _ = require('underscore')
 const{
     PATH
 } = require('./lib/api')
+const {
+    MODE
+} = require('./lib/config')
 
 async function mergeFile(listSKPD, directoryAttachment){
     for (const skpd of listSKPD) {
@@ -44,7 +47,7 @@ async function mergeFile(listSKPD, directoryAttachment){
             fs.mkdirSync(finalPath)
         }
 
-        let savePath = `${finalPath}\\${skpd}.pdf`
+        let savePath = `${finalPath}\\${skpd}${MODE}.pdf`
         console.log(savePath)
         if(fs.existsSync(savePath)){
             fs.unlinkSync(savePath)
