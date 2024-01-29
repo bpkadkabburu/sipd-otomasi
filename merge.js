@@ -40,7 +40,7 @@ async function mergeFile(listSKPD, directoryAttachment){
         }    
 
         const res = await mergedPdf.save()
-        const finalPath = `${PATH.DPA.UTAMA}\\8. DPA Lengkap`
+        const finalPath = `${PATH.DPA.UTAMA}\\8. DPA Lengkap${MODE}`
 
         if(!fs.existsSync(finalPath)){
             console.log(`Membuat Folder ${finalPath}`)
